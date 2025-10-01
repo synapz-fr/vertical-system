@@ -1,6 +1,6 @@
 import React from 'react';
-import { 
-  Home, Users, TrendingUp, FileText, DollarSign, UserPlus, 
+import {
+  Home, Users, TrendingUp, FileText, DollarSign, UserPlus,
   Package, Bot, MessageSquare, Gift, ChevronDown, ChevronRight,
   CreditCard, Settings
 } from 'lucide-react';
@@ -8,6 +8,7 @@ import { useApp } from '../../contexts/AppContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { usePermissions } from '../../hooks/usePermissions';
 import { Link, useLocation } from 'react-router-dom';
+import { translations as t } from '../../i18n/translations';
 
 interface MenuItem {
   id: string;
@@ -25,7 +26,7 @@ interface MenuItem {
 const menuItems: MenuItem[] = [
   {
     id: 'dashboard',
-    label: 'Dashboard',
+    label: t.sidebar.dashboard,
     icon: Home,
     path: '/dashboard',
     gradient: 'section-gradient-dashboard',
@@ -33,64 +34,64 @@ const menuItems: MenuItem[] = [
   },
   {
     id: 'leads',
-    label: 'Leads',
+    label: t.sidebar.leads,
     icon: Users,
     gradient: 'section-gradient-leads',
     section: 'leads',
     children: [
-      { label: 'Leads CRM', path: '/leads/crm' },
-      { label: 'Lead Metrics', path: '/leads/metrics' }
+      { label: t.sidebar.leadsCRM, path: '/leads/crm' },
+      { label: t.sidebar.leadMetrics, path: '/leads/metrics' }
     ]
   },
   {
     id: 'sales',
-    label: 'Sales',
+    label: t.sidebar.sales,
     icon: TrendingUp,
     gradient: 'section-gradient-sales',
     section: 'sales',
     children: [
-      { label: 'Sales Pipeline', path: '/sales/pipeline' },
-      { label: 'Sales CRM', path: '/sales/crm' },
-      { label: 'Sales Metrics', path: '/sales/metrics' },
-      { label: 'Setter Reports', path: '/sales/setter-reports' },
-      { label: 'Closer Reports', path: '/sales/closer-reports' }
+      { label: t.sidebar.salesPipeline, path: '/sales/pipeline' },
+      { label: t.sidebar.salesCRM, path: '/sales/crm' },
+      { label: t.sidebar.salesMetrics, path: '/sales/metrics' },
+      { label: t.sidebar.setterReports, path: '/sales/setter-reports' },
+      { label: t.sidebar.closerReports, path: '/sales/closer-reports' }
     ]
   },
   {
     id: 'documents',
-    label: 'Documents',
+    label: t.sidebar.documents,
     icon: FileText,
     gradient: 'section-gradient-documents',
     section: 'documents',
     children: [
-      { label: 'Proposals', path: '/documents/proposals' },
-      { label: 'Contracts', path: '/documents/contracts' },
-      { label: 'Invoices', path: '/documents/invoices' }
+      { label: t.sidebar.proposals, path: '/documents/proposals' },
+      { label: t.sidebar.contracts, path: '/documents/contracts' },
+      { label: t.sidebar.invoices, path: '/documents/invoices' }
     ]
   },
   {
     id: 'finances',
-    label: 'Finances',
+    label: t.sidebar.finances,
     icon: DollarSign,
     gradient: 'section-gradient-finances',
     section: 'finances',
     children: [
-      { label: 'Financial Dashboard', path: '/finances/dashboard' },
-      { label: 'Cash In', path: '/finances/cash-in' },
-      { label: 'Cash Out', path: '/finances/cash-out' },
-      { label: 'Receivables', path: '/finances/receivables' },
-      { label: 'Calendar', path: '/finances/calendar' }
+      { label: t.sidebar.financialDashboard, path: '/finances/dashboard' },
+      { label: t.sidebar.cashIn, path: '/finances/cash-in' },
+      { label: t.sidebar.cashOut, path: '/finances/cash-out' },
+      { label: t.sidebar.receivables, path: '/finances/receivables' },
+      { label: t.sidebar.calendar, path: '/finances/calendar' }
     ]
   },
   {
     id: 'onboarding',
-    label: 'Operations',
+    label: t.sidebar.operations,
     icon: UserPlus,
     gradient: 'section-gradient-onboarding',
     section: 'operations',
     children: [
-      { label: 'One Click Onboarding', path: '/onboarding/one-click' },
-      { label: 'Employee Onboarding', path: '/onboarding/employee' }
+      { label: t.sidebar.oneClickOnboarding, path: '/onboarding/one-click' },
+      { label: t.sidebar.employeeOnboarding, path: '/onboarding/employee' }
     ]
   }
 ];

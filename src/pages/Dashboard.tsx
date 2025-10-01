@@ -1,12 +1,13 @@
 import React from 'react';
-import { 
-  TrendingUp, Users, DollarSign, Target, 
-  Phone, Mail, Calendar, Award 
+import {
+  TrendingUp, Users, DollarSign, Target,
+  Phone, Mail, Calendar, Award
 } from 'lucide-react';
 import KPICard from '../components/Dashboard/KPICard';
 import ChartCard from '../components/Dashboard/ChartCard';
 import ProgressRing from '../components/Dashboard/ProgressRing';
 import MetricBar from '../components/Dashboard/MetricBar';
+import { translations as t } from '../i18n/translations';
 
 const Dashboard: React.FC = () => {
   return (
@@ -15,15 +16,15 @@ const Dashboard: React.FC = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold gradient-text section-gradient-dashboard">
-            Dashboard
+            {t.dashboard.title}
           </h1>
           <p className="text-gray-400 mt-2">
-            Welcome back! Here's what's happening with your agency.
+            {t.dashboard.subtitle}
           </p>
         </div>
         <div className="flex items-center space-x-4">
           <div className="text-right">
-            <p className="text-sm text-gray-400">Today</p>
+            <p className="text-sm text-gray-400">{t.common.today}</p>
             <p className="text-lg font-semibold text-white">
               {new Date().toLocaleDateString()}
             </p>
@@ -34,28 +35,28 @@ const Dashboard: React.FC = () => {
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <KPICard
-          title="Total Revenue"
+          title={t.dashboard.totalRevenue}
           value="$127,450"
           change="+12.5%"
           icon={DollarSign}
           trend="up"
         />
         <KPICard
-          title="Active Leads"
+          title={t.dashboard.activeLeads}
           value="1,247"
           change="+8.2%"
           icon={Users}
           trend="up"
         />
         <KPICard
-          title="Conversion Rate"
+          title={t.dashboard.conversionRate}
           value="18.7%"
           change="+2.1%"
           icon={Target}
           trend="up"
         />
         <KPICard
-          title="Monthly Growth"
+          title={t.dashboard.monthlyGrowth}
           value="23.4%"
           change="+5.3%"
           icon={TrendingUp}
@@ -65,32 +66,32 @@ const Dashboard: React.FC = () => {
 
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <ChartCard title="Revenue Trend">
+        <ChartCard title={t.dashboard.revenueTrend}>
           <div className="w-full space-y-4">
-            <MetricBar label="January" value={85} maxValue={100} color="#ef4444" />
-            <MetricBar label="February" value={92} maxValue={100} color="#f97316" />
-            <MetricBar label="March" value={78} maxValue={100} color="#eab308" />
-            <MetricBar label="April" value={95} maxValue={100} color="#22c55e" />
-            <MetricBar label="May" value={88} maxValue={100} color="#06b6d4" />
-            <MetricBar label="June" value={100} maxValue={100} color="#8b5cf6" />
+            <MetricBar label={t.dashboard.january} value={85} maxValue={100} color="#ef4444" />
+            <MetricBar label={t.dashboard.february} value={92} maxValue={100} color="#f97316" />
+            <MetricBar label={t.dashboard.march} value={78} maxValue={100} color="#eab308" />
+            <MetricBar label={t.dashboard.april} value={95} maxValue={100} color="#22c55e" />
+            <MetricBar label={t.dashboard.may} value={88} maxValue={100} color="#06b6d4" />
+            <MetricBar label={t.dashboard.june} value={100} maxValue={100} color="#8b5cf6" />
           </div>
         </ChartCard>
 
-        <ChartCard title="Performance Metrics">
+        <ChartCard title={t.dashboard.performanceMetrics}>
           <div className="grid grid-cols-2 gap-12 px-8">
             <ProgressRing
               percentage={87}
               size={140}
               strokeWidth={12}
               color="#ef4444"
-              label="Lead Quality"
+              label={t.dashboard.leadQuality}
             />
             <ProgressRing
               percentage={92}
               size={140}
               strokeWidth={12}
               color="#f97316"
-              label="Close Rate"
+              label={t.dashboard.closeRate}
             />
           </div>
         </ChartCard>
@@ -99,7 +100,7 @@ const Dashboard: React.FC = () => {
       {/* Activity Feed & Quick Actions */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
-          <ChartCard title="Recent Activity">
+          <ChartCard title={t.dashboard.recentActivity}>
             <div className="w-full space-y-4">
               {[
                 { icon: Phone, text: "Call scheduled with John Doe", time: "2 hours ago", color: "text-blue-400" },
@@ -120,13 +121,13 @@ const Dashboard: React.FC = () => {
         </div>
 
         <div className="space-y-6">
-          <ChartCard title="Quick Actions">
+          <ChartCard title={t.dashboard.quickActions}>
             <div className="w-full space-y-3">
               {[
-                { label: "Add New Lead", color: "from-teal-400 to-cyan-600" },
-                { label: "Create Proposal", color: "from-blue-400 to-purple-600" },
-                { label: "Schedule Call", color: "from-emerald-500 to-indigo-600" },
-                { label: "Generate Report", color: "from-rose-400 to-amber-500" }
+                { label: t.dashboard.addNewLead, color: "from-teal-400 to-cyan-600" },
+                { label: t.dashboard.createProposal, color: "from-blue-400 to-purple-600" },
+                { label: t.dashboard.scheduleCall, color: "from-emerald-500 to-indigo-600" },
+                { label: t.dashboard.generateReport, color: "from-rose-400 to-amber-500" }
               ].map((action, index) => (
                 <button
                   key={index}

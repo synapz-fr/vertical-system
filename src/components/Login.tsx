@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, LogIn, Infinity } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { translations as t } from '../i18n/translations';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -41,8 +42,8 @@ const Login: React.FC = () => {
             </h1>
           </div>
           <div className="space-y-2">
-            <h2 className="text-2xl font-semibold text-white">Welcome Back</h2>
-            <p className="text-gray-400">Sign in to your account</p>
+            <h2 className="text-2xl font-semibold text-white">{t.auth.welcomeBack}</h2>
+            <p className="text-gray-400">{t.auth.signInToAccount}</p>
           </div>
         </div>
 
@@ -58,7 +59,7 @@ const Login: React.FC = () => {
             {/* Email Field */}
             <div className="space-y-2">
               <label htmlFor="email" className="block text-sm font-medium text-gray-300">
-                Email Address
+                {t.auth.email}
               </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -68,7 +69,7 @@ const Login: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
-                  placeholder="Enter your email"
+                  placeholder={t.auth.enterEmail}
                   required
                 />
               </div>
@@ -77,7 +78,7 @@ const Login: React.FC = () => {
             {/* Password Field */}
             <div className="space-y-2">
               <label htmlFor="password" className="block text-sm font-medium text-gray-300">
-                Password
+                {t.auth.password}
               </label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -87,7 +88,7 @@ const Login: React.FC = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full pl-10 pr-12 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
-                  placeholder="Enter your password"
+                  placeholder={t.auth.enterPassword}
                   required
                 />
                 <button
@@ -111,7 +112,7 @@ const Login: React.FC = () => {
               ) : (
                 <>
                   <LogIn className="h-5 w-5" />
-                  <span>Sign In</span>
+                  <span>{t.auth.signIn}</span>
                 </>
               )}
             </button>
@@ -119,12 +120,12 @@ const Login: React.FC = () => {
             {/* Sign Up Link */}
             <div className="text-center">
               <p className="text-gray-400">
-                Don't have an account?{' '}
+                {t.auth.dontHaveAccount}{' '}
                 <Link
                   to="/signup"
                   className="text-red-400 hover:text-red-300 font-medium transition-colors"
                 >
-                  Sign up here
+                  {t.auth.signUpHere}
                 </Link>
               </p>
             </div>
@@ -134,7 +135,7 @@ const Login: React.FC = () => {
         {/* Footer */}
         <div className="text-center mt-8">
           <p className="text-gray-500 text-sm">
-            © 2024 Vertical Systems. All rights reserved.
+            © 2024 Vertical Systems. {t.auth.allRightsReserved}
           </p>
         </div>
       </div>

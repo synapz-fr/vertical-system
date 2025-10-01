@@ -1,6 +1,7 @@
 import React from 'react';
 import { Infinity, LogOut, User } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import { translations as t } from '../../i18n/translations';
 
 const Header: React.FC = () => {
   const { user, role, signOut } = useAuth();
@@ -37,7 +38,7 @@ const Header: React.FC = () => {
             className="flex items-center space-x-2 px-3 py-2 text-sm bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"
           >
             <LogOut className="h-4 w-4" />
-            <span>Logout</span>
+            <span>{t.auth.logout}</span>
           </button>
         </div>
       )}

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { AppProvider } from './contexts/AppContext';
 import { Suspense } from 'react';
+import { translations as t } from './i18n/translations';
 import Header from './components/Layout/Header';
 import Sidebar from './components/Layout/Sidebar';
 import Footer from './components/Layout/Footer';
@@ -32,7 +33,7 @@ const AppContent: React.FC = () => {
       <div className="min-h-screen bg-gray-950 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-400 mx-auto mb-4"></div>
-          <p className="text-gray-400">Loading...</p>
+          <p className="text-gray-400">{t.common.loading}</p>
         </div>
       </div>
     );
@@ -84,7 +85,7 @@ const AppContent: React.FC = () => {
                     <div className="min-h-screen bg-gray-950 flex items-center justify-center">
                       <div className="text-center">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-400 mx-auto mb-4"></div>
-                        <p className="text-gray-400">Loading...</p>
+                        <p className="text-gray-400">{t.common.loading}</p>
                       </div>
                     </div>
                   }>

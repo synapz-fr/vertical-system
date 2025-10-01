@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, User, Phone, Briefcase, Shield, UserPlus, Infinity } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { UserRole } from '../utils/permissions';
+import { translations as t } from '../i18n/translations';
 
 const Signup: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -21,11 +22,10 @@ const Signup: React.FC = () => {
 
   const { signUp } = useAuth();
 
-  // Hardcoded roles as specified
   const roles: { value: UserRole; label: string; description: string }[] = [
-    { value: 'User', label: 'User', description: 'Standard user access' },
-    { value: 'Finance', label: 'Finance', description: 'Financial management access' },
-    { value: 'Admin', label: 'Admin', description: 'Full system access' }
+    { value: 'User', label: t.roles.user, description: t.roles.userDesc },
+    { value: 'Finance', label: t.roles.finance, description: t.roles.financeDesc },
+    { value: 'Admin', label: t.roles.admin, description: t.roles.adminDesc }
   ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -40,21 +40,20 @@ const Signup: React.FC = () => {
     setLoading(true);
     setError('');
 
-    // Validation
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      setError(t.auth.passwordsDoNotMatch);
       setLoading(false);
       return;
     }
 
     if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters long');
+      setError(t.auth.passwordTooShort);
       setLoading(false);
       return;
     }
 
     if (!formData.role) {
-      setError('Please select a role');
+      setError(t.auth.pleaseSelectRole);
       setLoading(false);
       return;
     }
@@ -88,8 +87,8 @@ const Signup: React.FC = () => {
             </h1>
           </div>
           <div className="space-y-2">
-            <h2 className="text-2xl font-semibold text-white">Create Account</h2>
-            <p className="text-gray-400">Join Vertical Systems and start managing your agency</p>
+            <h2 className="text-2xl font-semibold text-white">{t.auth.createAccount}</h2>
+            <p className="text-gray-400">{t.auth.joinUs}</p>
           </div>
         </div>
 
@@ -105,7 +104,7 @@ const Signup: React.FC = () => {
             {/* Full Name Field */}
             <div className="space-y-2">
               <label htmlFor="fullName" className="block text-sm font-medium text-gray-300">
-                Full Name
+                {t.auth.fullName}
               </label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -116,7 +115,7 @@ const Signup: React.FC = () => {
                   value={formData.fullName}
                   onChange={handleChange}
                   className="w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
-                  placeholder="Enter your full name"
+                  placeholder={t.auth.enterFullName}
                   required
                 />
               </div>
@@ -125,7 +124,7 @@ const Signup: React.FC = () => {
             {/* Email Field */}
             <div className="space-y-2">
               <label htmlFor="email" className="block text-sm font-medium text-gray-300">
-                Email Address
+                {t.auth.email}
               </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -136,7 +135,7 @@ const Signup: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
-                  placeholder="Enter your email"
+                  placeholder={t.auth.enterEmail}
                   required
                 />
               </div>
@@ -145,7 +144,7 @@ const Signup: React.FC = () => {
             {/* Phone Number Field */}
             <div className="space-y-2">
               <label htmlFor="phone" className="block text-sm font-medium text-gray-300">
-                Phone Number
+                {t.auth.phone}
               </label>
               <div className="relative">
                 <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -156,7 +155,7 @@ const Signup: React.FC = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   className="w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
-                  placeholder="Enter your phone number"
+                  placeholder={t.auth.enterPhone}
                   required
                 />
               </div>
@@ -165,7 +164,7 @@ const Signup: React.FC = () => {
             {/* Job Title Field */}
             <div className="space-y-2">
               <label htmlFor="jobTitle" className="block text-sm font-medium text-gray-300">
-                Job Title
+                {t.auth.jobTitle}
               </label>
               <div className="relative">
                 <Briefcase className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -185,7 +184,7 @@ const Signup: React.FC = () => {
             {/* Role Selection Field */}
             <div className="space-y-2">
               <label htmlFor="role" className="block text-sm font-medium text-gray-300">
-                Role
+                {t.auth.role}
               </label>
               <div className="relative">
                 <Shield className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -197,7 +196,7 @@ const Signup: React.FC = () => {
                   className="w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white transition-all duration-200"
                   required
                 >
-                  <option value="">Select your role...</option>
+                  <option value="">{t.auth.selectRole}</option>
                   {roles.map((role) => (
                     <option key={role.value} value={role.value}>
                       {role.label} - {role.description}
@@ -210,7 +209,7 @@ const Signup: React.FC = () => {
             {/* Password Field */}
             <div className="space-y-2">
               <label htmlFor="password" className="block text-sm font-medium text-gray-300">
-                Password
+                {t.auth.password}
               </label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -221,7 +220,7 @@ const Signup: React.FC = () => {
                   value={formData.password}
                   onChange={handleChange}
                   className="w-full pl-10 pr-12 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-200"
-                  placeholder="Create a password"
+                  placeholder={t.auth.enterPassword}
                   required
                 />
                 <button
@@ -237,7 +236,7 @@ const Signup: React.FC = () => {
             {/* Confirm Password Field */}
             <div className="space-y-2">
               <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-300">
-                Confirm Password
+                {t.auth.confirmPassword}
               </label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -272,7 +271,7 @@ const Signup: React.FC = () => {
               ) : (
                 <>
                   <UserPlus className="h-5 w-5" />
-                  <span>Create Account</span>
+                  <span>{t.auth.createAccount}</span>
                 </>
               )}
             </button>
@@ -280,12 +279,12 @@ const Signup: React.FC = () => {
             {/* Sign In Link */}
             <div className="text-center">
               <p className="text-gray-400">
-                Already have an account?{' '}
+                {t.auth.alreadyHaveAccount}{' '}
                 <Link
                   to="/login"
                   className="text-red-400 hover:text-red-300 font-medium transition-colors"
                 >
-                  Sign in here
+                  {t.auth.signInHere}
                 </Link>
               </p>
             </div>
@@ -295,7 +294,7 @@ const Signup: React.FC = () => {
         {/* Footer */}
         <div className="text-center mt-8">
           <p className="text-gray-500 text-sm">
-            © 2024 Vertical Systems. All rights reserved.
+            © 2024 Vertical Systems. {t.auth.allRightsReserved}
           </p>
         </div>
       </div>
